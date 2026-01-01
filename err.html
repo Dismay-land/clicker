@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errors</title>
+</head>
+<body>
+    <button onclick="window.location.href='button clicker.html'">back to game</button>
+    <h1>ERRORS IN BUTTON CLICKER</h1>
+    <h2>fatal errors</h2>
+    <button id="scrpt">SCRIPT_NOT_SUPPORTED</button>
+    <p id="txt"></p>
+    <h2>missing files</h2>
+    <button id="css">404 FILE_NOT_FOUND</button>
+    <p id="cssTxt"></p>
+    <button id="snd">Sound File Missing</button>
+    <p id="sndTxt"></p>
+    <h2>graphic errors (not fatal)</h2>
+    <button id="cnv">canvas failed</button>
+    <p id="cnvtxt"></p>
+    <script>
+        const scrpt = document.getElementById("scrpt")
+        const scrpttxt = document.getElementById("txt")
+        const cssbtn = document.getElementById("css")
+        const csstxt = document.getElementById("cssTxt")
+        const sndbtn = document.getElementById("snd")
+        const sndtxt = document.getElementById("sndTxt")
+        const cnvbtn = document.getElementById("cnv")
+        const cnvtxt = document.getElementById("cnvtxt")
+        let cnvshown = 0
+
+        let sndshown = 0
+        let shown = 0
+        let cssshown = 0
+        scrpt.onclick = function () {
+            if (shown === 0){
+                shown = 1
+                scrpttxt.textContent = "this error will show up when your browser detects that javascript (or your main code) is not running or working, to fix this bug, go to google settings » click privacy and security » site settings » click 'Sites can use JavaScript'. if javascript is already enabled, try a different browser.";
+            }
+            else{
+                shown = 0
+                scrpttxt.textContent = ""
+            }
+
+        }
+        cssbtn.onclick = function () {
+            if (cssshown === 0){
+                cssshown = 1
+                csstxt.textContent = "this error will show up when your browser cannot find the CSS file, to fix this bug, make sure that the CSS file is in the same folder as the HTML file and that it is named correctly (btnclk.css). some fixes have been provided in the game files.";
+            }
+            else{
+                cssshown = 0
+                csstxt.textContent = ""
+            }
+
+        }
+        sndbtn.onclick = function () {
+            if (sndshown === 0){
+                sndshown = 1
+                sndtxt.textContent = "this error will show up when the sound file is missing or cannot be found, to fix this bug, make sure that the sound file is in the same folder as the HTML file and that it is named correctly (click.mp3). no posible fixes have been provided in the game files.";
+            }
+            else{
+                sndshown = 0
+                sndtxt.textContent = ""
+            }
+
+        }
+        cnvbtn.onclick = function () {
+            if (cnvshown === 0){
+                cnvshown = 1
+                cnvtxt.textContent = "this error is not directly displayed in the game, and displayed in the browser console instead. it means that canva has been incorectley initilized and partciles are failing. to fix this bug, make sure that your browser is up to date and supports HTML5 canva. or try a different browser and be patient.";
+            }
+            else{
+                cnvshown = 0
+                cnvtxt.textContent = ""
+            }
+
+        }
+    </script>
+</body>
+</html>

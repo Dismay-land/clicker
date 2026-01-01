@@ -1,0 +1,235 @@
+<!-- welcome to button clicker! my very first game with huge logic, from errors to css then sounds and popups,
+even storage! i just want to give a huge shout out to all theese who helped me:
+ GitHub Copilot, generating text for me to make things quick
+ ChatGPT, for helping me building the base logic and give out ideas, even if it makes errors, im not mad
+ DevTools on Chrome, helping me find bugs, and at the same time giving me the chance to learn and resist
+ stack overflow, helping me fix bugs when others were unavailable
+i truly recomend using these, especialy if you are a begginer like me.
+thank you for reading this comment, happy viewing (or hacking)!-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta>
+    <title>Button Clicker</title>
+    <link id="mainCSS" rel="stylesheet" href="./btnclk.css">
+    <link rel="stylesheet" href="./css-failCSS.css">
+    <link rel="icon" href="./gameLG.png">
+    <meta name="font-family" content="sans-serif">
+
+    <style>
+        body {
+            background-color: rgb(207, 255, 253);
+            color: rgb(0, 0, 0);
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- prepare audio -->
+    <audio id="clickSound" src="./clk.mp3"></audio>
+    <!-- following div is used to test if css loaded -->
+    <div id="css-test-element" style="display:none;"></div>
+    <div id="cssError">
+        <div class="errBox">
+            <h1>⚠️ CSS Failed to Load</h1>
+            <p>The page will not load without the stylesheet. please make sure that you downloaded the css file.</p>
+            <p>ERROR CODE 404: FILE_NOT_FOUND</p>
+            <button id="continueBtn">atempt to check for CSS</button>
+            <button id="force">force check for css [Android only]</button>
+            <button id="rld" onclick="location.reload();">reload page</button>
+            <button id="redir" onclick="window.location.href='err.html'">go to error type</button>
+            <button id="dwnld">download full CSS</button>
+            <p id="atmp"></p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+
+            const test = getComputedStyle(document.getElementById("css-test-element")).width;
+
+            if (test !== "10px") {
+                // CSS didn't load
+                document.getElementById("cssError").style.display = "flex";
+            }
+        };
+    </script>
+    <!-- main setup -->
+    <h1>Button Clicker</h1>
+    <button id="bonusBtn" style="display:none"></button>
+    <button id="settings">⚙ SETTINGS</button>
+    <button id="vers">Version log</button>
+    <div id="settingsMenu" style="display:none;">
+        <h2>Settings</h2>
+        <button id="resetBtn">RESET</button>
+        <button id="save">Save Game</button>
+        <button id="dark">Dark Mode</button>
+        <button id="err" onclick="window.location.href='err.html'">redirect to errors</button>
+        <button id="cloudSave">export save</button>
+        <button id="loadSave">load save</button>
+        <input style="display:none" id="inputLoadSave" type="text" placeholder="enter save code:" />
+        <button style="display:none" id="enterSave">load</button>
+        <p id="savetxt"></p>
+    </div>
+    <div id="versdiv" style="display:none">
+        <h2>VERSION LOG</h2>
+        <!-- date of release was provided by the GitHub branching system -->
+        <h3>ALPHA VERSIONS</h3>
+        <p>v0.1 - initial release, introduced main click logic, input logic, and level logic. date of release: November
+            23, 2025 at 1:23 PM</p>
+        <p>v0.2 - introduced storage to the game, can now save and reset and hold data in device. date of release:
+            November 26, 2025 at 6:31 PM</p>
+        <p>v0.2.1 - removed autosave. date of release: November 28, 2025 at 3:41 PM</p>
+        <p>v0.2.2 - made a script support error. date of release: November 29, 2025 at 7:27 PM</p>
+        <h3>BETA versions</h3>
+        <p>v1.2.2 - brought back autosave, made achievements, upgrades, and daily rewards. date of release: November 30,
+            2025 at
+            7:34 PM</p>
+        <p>v1.3.2 - created an external CSS file, including an error that warns you incase it wasn't found, and
+            SMOO~~~TH
+            transitions. date of release: December 3, 2025 at 12:58 PM</p>
+        <p>v1.4.2 - supports mobile now, not entirely, but mostly. date of release: December 3, 2025 at 5:26 PM</p>
+        <p>v1.5.2 - tweaked the game and it's CSS file, and installed sound. date of release: December 3, 2025 at 9:27
+            PM</p>
+        <p>v1.5.3 - made another error screen that warns you if it can't find the sound file. date of release: December
+            5, 2025 at 9:59 PM</p>
+        <p>v1.6.3 - made particles. date of release: December 7, 2025 at 6:08 PM</p>
+        <p>v1.9.3 - made a website that tells about all the errors in button clicker, more
+            animatins, settings and dark mode! date of release: December 21, 2025 at 12:31 PM</p>
+        <h3>FINISHED versions</h3>
+        <p>*this is the current version* v2.0 - made a version log option, prestige officially works, made two more
+            files. date of release: December 26, 2025 at 9:17 PM</p>
+    </div>
+    <div style="margin-bottom: 20px">
+        <canvas id="particleCanvas"></canvas>
+        <button id="myButton">0</button>
+    </div>
+    <div>
+        <input id="myInput" type="number" value="1" min="0" pattern="[1-9]" placeholder="use to level up" />
+        <button id="ok">&larr;level up that many times</button>
+        <div id="particleContainer"></div>
+        <p>click = + [how many levels you have] points!</p>
+    </div>
+    <div>
+        <p id="levelDisplay">Level: 1</p>
+    </div>
+    <p id="cost">cost for next level: 100</p>
+    <p id="aford">yes or nope</p>
+
+    <!-- Source - https://stackoverflow.com/a/3926750
+    Posted by hairbo, modified by community. See post 'Timeline' for change history
+    Retrieved 2025-11-29, License - CC BY-SA 3.0 -->
+    <noscript>
+        <style type="text/css">
+            .pagecontainer {
+                display: none;
+            }
+        </style>
+        <div class="noscriptmsg">
+            javascript is not supported by your browser or is disabled.
+            <p>ERROR CODE: SCRIPT_NOT_SUPPORTED</p>
+        </div>
+    </noscript>
+    <!--end of source-->
+    <!--extra gui-->
+    <p id="totclk">total clicks: 0</p>
+    <button id="prestigeBtn" onclick="prestige()" title="prestige is still in progress, please do not use">Prestige
+        (Requires 10,000,000,000 (10 billion) points)</button>
+    <div id="prestigeInfo" title="prestige is still in progress, please do not use">Prestige Multiplier: x1</div>
+    <!-- upgrades -->
+    <button id="shopBtn">Upgrades 🛍️⬆️</button>
+    <div id="shop" style="display:none;">
+        <p>(tip: hover your mouse pointer over a buttton for the details of the upgrade)</p>
+        <button id="clicker" title="each auto-cliker clicks 1 point per second">auto-clicker (500 points per
+            clicker)</button>
+        <p id="clickertxt">you have 0 auto-clickers</p>
+
+        <button id="genBtn" title="each genrator produces 5 points per second">Generator (1000 points)</button>
+        <p id="genTxt">You have 0 generators</p>
+
+        <button id="facBtn" title="each factory makes 25 points per second">Factory (5000 points)</button>
+        <p id="facTxt">You have 0 factories</p>
+
+        <button id="reactBtn" title="each Quantum Reactor fuses 100 points per second">Quantum Reactor (25000
+            points)</button>
+        <p id="reactTxt">You have 0 reactors</p>
+
+        <button id="alcam" title="each alchemy lab transmutes 10000 points per second">Alchemy Lab (100000
+            points)</button>
+        <p id="alctxt">You have 0 alchemy labs</p>
+
+        <button id="grandma"
+            title="to remember her loss, each grandma bakes 1 million points per second... she shall not be forgotten">RIP
+            Grandma... (10 million points)</button>
+        <p id="grandmatxt">You have 0 Grandmas</p>
+
+        <h2>feature</h2>
+
+        <button id="bonusclk">click the bonus button (5000000 points (5 million))</button>
+        <p id="bnsclkTXT">buying this feature will click all the bonus buttons so you don't miss anything!</p>
+    </div>
+    <style>
+        #grandma {
+            box-shadow: 0 0 12px 4px rgba(150, 80, 255, 0.4);
+            border: 1px solid rgb(180, 130, 255);
+            transition: 1s;
+        }
+
+        #grandma:hover {
+            box-shadow: 0 0 20px 6px rgba(180, 120, 255, 0.7);
+        }
+    </style>
+    <!-- achievements -->
+    <h2>achievements (scroll down)</h2>
+    <p id="click">???</p>
+    <p id="100clk">???</p>
+    <p id="1000clk">???</p>
+    <p id="50000clk">???</p>
+    <p id="1auto">???</p>
+    <p id="10auto">???</p>
+    <p id="50auto">???</p>
+    <p id="1gen">???</p>
+    <p id="10gen">???</p>
+    <p id="50gen">???</p>
+    <p id="1fac">???</p>
+    <p id="10fac">???</p>
+    <p id="50fac">???</p>
+    <p id="1reactor">???</p>
+    <p id="10reactor">???</p>
+    <p id="50reactor">???</p>
+    <p id="1alcam">???</p>
+    <p id="10alcam">???</p>
+    <p id="50alcam">???</p>
+    <p id="1grandma">???</p>
+    <p id="10grandma">???</p>
+    <p id="50grandma">???</p>
+    <!-- main code -->
+    <script>
+        // unlock sound play
+        const clickSound = document.getElementById("clickSound");
+        clickSound.volume = 0.4;
+        document.body.addEventListener("mousedown", () => {
+            clickSound.play().catch(() => { });
+        }, { once: true });
+        clickSound.addEventListener("error", () => {
+            showMissingSoundPopup();
+        });
+
+        // preapare canvas
+        const canvas = document.getElementById("particleCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let particles = [];
+    </script>
+
+</body>
+<script src="./set-up.js"></script>
+<script src="./controler.js"></script>
+<script src="./shop.js"></script>
+<script src="./css-fail.js"></script>
+</html>
