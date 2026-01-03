@@ -18,6 +18,8 @@ let alcamCost = Number(localStorage.getItem("alcamCost")) || 100000;
 let prestigelvl = Number(localStorage.getItem("prestigeBtn")) || 0;
 let prestigeMult = Number(localStorage.getItem("prestigeInfo")) || 1.0;
 let bonusfeat = Number(localStorage.getItem("bonusBtn")) || 0;
+let lvlfeat = Number (localStorage.getItem("autoLvl")) || 0;
+let luckACH = Number (localStorage.getItem("luck")) || 0;
 let upgrades = (auto * 1) + (generators * 5) + (factories * 25) + (reactors * 100) + (alcam * 10000) + (grandmas * 1000000);
 let autoBoost = 0;
 // Prevent NaN bug from breaking game
@@ -71,6 +73,11 @@ const enterSaveBtn = document.getElementById("enterSave");
 const savetxt = document.getElementById("savetxt");
 const shopDiv = document.getElementById("shop");
 const shopBtn = document.getElementById("shopBtn");
+let soundOn = document.getElementById("soundToggle");
+let autolvlON = document.getElementById("autoLvlOn");
+const autolevel = document.getElementById("autoLvl");
+const autolvlTXT = document.getElementById("alvTXT");
+let howMany = document.getElementById("howMany");
 shopDiv.style.display = "none";
 autoCost.textContent = 500 * Math.pow(1.15, auto);
 generatorCost.textContent = 1000 * Math.pow(1.15, generators);
@@ -96,8 +103,11 @@ grandmaTxt.textContent = "You have " + grandmas + " Grandmas";
 alcamBtn.textContent = "Alchemy Lab (" + alcamCost + " points)";
 alcamTxt.textContent = "You have " + alcam + " alchey labs";
 prestigeInfo.textContent = "Prestige Multiplier: x" + prestigeMult.toFixed(1);
+document.onclick = function() {
+    howMany.textContent = "click = +" + level + " points!"
+};
 
-if (bonusfeat === 0) {
+if (bonusfeat === 1) {
     bonusclkBtn.style.display = "none";
     bnsclkTXT.textContent = "you now own this feature, go and relax.";
 
@@ -105,6 +115,35 @@ if (bonusfeat === 0) {
 else {
     bonusclkBtn.style.display = "flex";
     bnsclkTXT.textContent = "buying this feature will click all the bonus buttons so you don't miss anything!";
+};
+
+if (lvlfeat === 1) {
+    autolevel.style.display = "none";
+    autolvlTXT.textContent = "you now own this feature, let's see how much points you saved for this moment!.";
+    autolvlON.style.display = "block"
+
+}
+else {
+    autolevel.style.display = "flex";
+    autolvlTXT.textContent = "buying this feature automaticly levels you up when it's afordable";
+    autolvlON.style.display = "none"
+    autolvlON.value = "off"
+};
+
+autolevel.onclick = function() {
+    if (score >= 7000000) {
+        score -= 7000000;
+        lvlfeat = 1;
+
+        localStorage.setItem("score", score);
+        localStorage.setItem("autoLvl", lvlfeat);
+
+        button.textContent = score;
+        bonusclkBtn.style.display = "none";
+        bnsclkTXT.textContent = "you now own this feature, go and relax.";
+        checkAchivements();
+    }
+
 };
 
 // bonus point controller

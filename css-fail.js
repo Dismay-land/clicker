@@ -103,6 +103,7 @@ const fallbackCSS = `
     height: 100%;
     pointer-events: none;
 }
+
 #settings {
     position: fixed;
     top: 10px;
@@ -111,16 +112,129 @@ const fallbackCSS = `
     background: none;
     border: none;
     cursor: pointer;
+    transition: 180ms;
 }
 #settingsMenu {
     background: white;
-    margin-left: 400px;
+    position: fixed;
+    margin-top: 50px;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    border: none;
+    cursor: default;
     padding: 20px;
     border: 2px solid black;
     border-radius: 10px;
+    transition: 60ms;
+    z-index: 1500;
+}
+#ok {
+    margin-top: 10px;
+    padding: auto;
+    transition: 180ms;
+}
+#ok:hover {
+    background-color: lightgray;
+    padding: 10px 22px;
+}
+#ok:active {
+    background-color: gray;
+    padding: 5px 5px;
+}
+#prestigeBtn {
+    margin-top: 10px;
+    padding: auto;
+    background-color: white;
+    transition: 600ms;
+}
+#prestigeBtn:hover {
+    margin-top: 10px;
+    padding: auto;
+    background-color: red;
+    transition: 600ms;
+}
+#vers {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 180ms;
+}
+#versdiv {
+    display: none;
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    z-index: 1000;
+}
+#shopBtn {
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 180ms;
+}
+#shop {
+    display: none;
+    position: fixed;
+    top: 120px;
+    right: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    z-index: 500;
+}
+#rec {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    background: none;
+    border: none;
+    cursor: default;
+    color: gray;
+}
+#version {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: default;
+    color: gray;
+}
+#tuto {
+    position: fixed;
+    top: 120px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 180ms;
 }
 `;
-
 
 dwnldBtn.onclick = function () {
     btn = document.getElementById("continueBtn");

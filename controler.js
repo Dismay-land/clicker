@@ -290,14 +290,16 @@ saveBtn.onclick = function () {
         document.getElementById("savetxt").textContent = "";
     }
 };
-
 button.onclick = function () {
     // define variables
     let cost = level * amount * 100;
 
-    // play click sound
-    clickSound.currentTime = 0;
-    clickSound.play();
+    // play click sound only if sound is enabled
+    if (soundOn.value === "on") {
+        document.getElementById("clickSound").currentTime = 0;
+        document.getElementById("clickSound").play();
+    }
+
 
     // change button color randomly
     const r = Math.floor(Math.random() * 256);
@@ -336,9 +338,10 @@ input.oninput = function () {
 };
 
 levelBtn.onclick = function () {
-
     let amount = parseInt(input.value, 10);   // how many levels player wants
     let cost = level * amount * 100;           // price calculation
+
+    autoleveler();
 
     if (score >= cost) {
         score -= cost;
@@ -463,73 +466,84 @@ function animateParticles() {
 animateParticles();
 
 function checkAchivements() {
-
+    if (bonusfeat === 1 || lvlfeat === 1) {
+        document.getElementById("feat").textContent = "features?!"
+    };
+    if (luckACH === 1) {
+        document.getElementById("luck").textContent = "LUCKY!"
+    };
     if (clicks >= 1) {
         document.getElementById("click").textContent = "1 click down...";
-    }
+    };
     if (clicks >= 100) {
         document.getElementById("100clk").textContent = "100 clicks!";
-    }
+    };
+    if (level > 1) {
+        document.getElementById("1lvl").textContent = "LEVEL UP!!!"
+    };
     if (clicks >= 1000) {
         document.getElementById("1000clk").textContent = "what comes after 999? 1000!!!!!!!!!!!!!!!";
+    };
+    if (clicks >= 5000) {
+        document.getElementById("5000clk").textContent = "5000 down, 45 thousand more clicks to go..."
     }
     if (clicks >= 50000) {
         document.getElementById("50000clk").textContent = "click-aholic";
-    }
+    };
     if (auto >= 1) {
         document.getElementById("1auto").textContent = "some automating going on";
-    }
+    };
     if (auto >= 10) {
         document.getElementById("10auto").textContent = "getting serious with the auto-clickers";
-    }
+    };
     if (auto >= 50) {
         document.getElementById("50auto").textContent = "OH MY LORD";
-    }
+    };
     if (generators >= 1) {
         document.getElementById("1gen").textContent = "GENERATING TEXT... SUCSESS.";
-    }
+    };
     if (generators >= 10) {
         document.getElementById("10gen").textContent = "powering up...";
-    }
+    };
     if (generators >= 50) {
         document.getElementById("50gen").textContent = "ENERGY OVERLOAD!!!";
-    }
+    };
     if (factories >= 1) {
         document.getElementById("1fac").textContent = "factory is opperational";
-    }
+    };
     if (factories >= 10) {
         document.getElementById("10fac").textContent = "huge production";
-    }
+    };
     if (factories >= 50) {
         document.getElementById("50fac").textContent = "earth = factory now";
-    }
+    };
     if (reactors >= 1) {
         document.getElementById("1reactor").textContent = "quantumized points";
-    }
+    };
     if (reactors >= 10) {
         document.getElementById("10reactor").textContent = "quantumized points (why does this make me think about cookies?)";
-    }
+    };
     if (reactors >= 50) {
         document.getElementById("50reactor").textContent = "quantumized points OVERLOAD!!!";
-    }
+    };
     if (alcam >= 1) {
         document.getElementById("1alcam").textContent = "alchemy is real";
-    }
+    };
     if (alcam >= 10) {
         document.getElementById("10alcam").textContent = "ten labs, are u serious?";
-    }
+    };
     if (alcam >= 50) {
         document.getElementById("50alcam").textContent = "philosophic clicks?";
-    }
+    };
     if (grandmas >= 1) {
         document.getElementById("1grandma").textContent = "RIP Grandma";
-    }
+    };
     if (grandmas >= 10) {
         document.getElementById("10grandma").textContent = "raining cicks (thanks grandma)";
-    }
+    };
     if (grandmas >= 50) {
         document.getElementById("50grandma").textContent = "heavanly clicks";
-    }
+    };
 };
 function giveDailyReward() {
     let today = new Date().toDateString();
@@ -693,28 +707,6 @@ button.addEventListener("click", (e) => {
     const x = rect.left + rect.width / 2;
     const y = rect.top;
 });
-document.addEventListener("click", (e) => {
-    spawnParticles(e.clientX, e.clientY);
-});
-function resizeCanvas() {
-    const dpr = window.devicePixelRatio || 1;
-
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
-
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-}
-
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-//check if cavas initialized
-
-if (!canvas || !ctx) {
-    console.error("Canvas not initialized");
-}
 
 function BonusButtonOverTime() {
     setTimeout(() => {
@@ -755,11 +747,30 @@ function spawnBonusButton() {
                     bonusBtn.style.display = "none";
                     score += plus;
                     button.textContent = score;
+                    checkAchivements();
                     spawnBonusButton();
                 };
             }
         }, 1000);
     }, 100000);
+    luckACH = 1;
+    localStorage.setItem("luck", luckACH)
 }
+function autoleveler() {
+    let cost = level * amount * 100;           // price calculation
+    if (autolvlON.value === "on" && score >= cost) {
+        score -= cost;
+        level += amount;
 
+        button.textContent = score;
+        display.textContent = "Level: " + level;
+        let nextAmount = parseInt(input.value, 10) || 1;
+        let nextCost = level * nextAmount * 100; // controll cost display after level up
+        costDisplay.textContent = "Cost for next level: " + nextCost;
+        localStorage.setItem("score", score);
+        localStorage.setItem("level", level);
+        checkAchivements();
+        autoleveler();
+    }
+};
 spawnBonusButton();

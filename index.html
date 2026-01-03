@@ -13,7 +13,6 @@ thank you for reading this comment, happy viewing (or hacking)!-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta>
     <title>Button Clicker</title>
     <link id="mainCSS" rel="stylesheet" href="./btnclk.css">
     <link rel="stylesheet" href="./css-failCSS.css">
@@ -61,8 +60,13 @@ thank you for reading this comment, happy viewing (or hacking)!-->
     </script>
     <!-- main setup -->
     <h1>Button Clicker</h1>
+    <div id="version">V2.2</div>
+    <div id="rec">
+        recomended project: <b>https://storafy-n0976qjf5-dismay-lands-projects.vercel.app/</b>
+    </div>
     <button id="bonusBtn" style="display:none"></button>
     <button id="settings">⚙ SETTINGS</button>
+    <button id="tuto">❓tutorial❓</button>
     <button id="vers">Version log</button>
     <div id="settingsMenu" style="display:none;">
         <h2>Settings</h2>
@@ -74,6 +78,12 @@ thank you for reading this comment, happy viewing (or hacking)!-->
         <button id="loadSave">load save</button>
         <input style="display:none" id="inputLoadSave" type="text" placeholder="enter save code:" />
         <button style="display:none" id="enterSave">load</button>
+        <br>
+        <label for="soundToggle">Sound:</label>
+        <select id="soundToggle">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+        </select>
         <p id="savetxt"></p>
     </div>
     <div id="versdiv" style="display:none">
@@ -102,8 +112,10 @@ thank you for reading this comment, happy viewing (or hacking)!-->
         <p>v1.9.3 - made a website that tells about all the errors in button clicker, more
             animatins, settings and dark mode! date of release: December 21, 2025 at 12:31 PM</p>
         <h3>FINISHED versions</h3>
-        <p>*this is the current version* v2.0 - made a version log option, prestige officially works, made two more
+        <p>v2.0 - made a version log option, prestige officially works, made two more
             files. date of release: December 26, 2025 at 9:17 PM</p>
+        <p>v2.1 - released the game publicly to vercel, now available everywhere online by typing <b>https://clicker-nine-kappa.vercel.app</b>. date of release: January 1, 2026 at 4:32 PM</p>
+        <p>*this is the current version* v2.2 - updated files, fixed bugs, added a new feature to the settings tab, made a tiny "recomended" div, made a new feature acessable by looking at the bottom of the "shop" menu, made a tutorial on how to play, and a bunch more. date of release: January 3, 2026 at 2:50 PM</p>
     </div>
     <div style="margin-bottom: 20px">
         <canvas id="particleCanvas"></canvas>
@@ -113,7 +125,7 @@ thank you for reading this comment, happy viewing (or hacking)!-->
         <input id="myInput" type="number" value="1" min="0" pattern="[1-9]" placeholder="use to level up" />
         <button id="ok">&larr;level up that many times</button>
         <div id="particleContainer"></div>
-        <p>click = + [how many levels you have] points!</p>
+        <p id="howMany"></p>
     </div>
     <div>
         <p id="levelDisplay">Level: 1</p>
@@ -138,9 +150,9 @@ thank you for reading this comment, happy viewing (or hacking)!-->
     <!--end of source-->
     <!--extra gui-->
     <p id="totclk">total clicks: 0</p>
-    <button id="prestigeBtn" onclick="prestige()" title="prestige is still in progress, please do not use">Prestige
+    <button id="prestigeBtn" onclick="prestige()">Prestige
         (Requires 10,000,000,000 (10 billion) points)</button>
-    <div id="prestigeInfo" title="prestige is still in progress, please do not use">Prestige Multiplier: x1</div>
+    <div id="prestigeInfo">Prestige Multiplier: x1</div>
     <!-- upgrades -->
     <button id="shopBtn">Upgrades 🛍️⬆️</button>
     <div id="shop" style="display:none;">
@@ -168,10 +180,18 @@ thank you for reading this comment, happy viewing (or hacking)!-->
             Grandma... (10 million points)</button>
         <p id="grandmatxt">You have 0 Grandmas</p>
 
-        <h2>feature</h2>
+        <h2>features</h2>
 
         <button id="bonusclk">click the bonus button (5000000 points (5 million))</button>
         <p id="bnsclkTXT">buying this feature will click all the bonus buttons so you don't miss anything!</p>
+
+        <button id="autoLvl">auto-leveler (7000000 points (7 million))</button>
+        <p id="alvTXT">this feature will make you level up to the highest afordable level the moment you click "level up"</p>
+        <label id="alvlLab" for="autoLvlOn">auto-level up:</label>
+        <select id="autoLvlOn">
+            <option value="on">On</option>
+            <option value="off">Off</option>
+        </select>
     </div>
     <style>
         #grandma {
@@ -188,7 +208,11 @@ thank you for reading this comment, happy viewing (or hacking)!-->
     <h2>achievements (scroll down)</h2>
     <p id="click">???</p>
     <p id="100clk">???</p>
+    <p id="1lvl">???</p>
     <p id="1000clk">???</p>
+    <p id="luck">???</p>
+    <p id="feat">???</p>
+    <p id="5000clk">???</p>
     <p id="50000clk">???</p>
     <p id="1auto">???</p>
     <p id="10auto">???</p>
@@ -232,4 +256,7 @@ thank you for reading this comment, happy viewing (or hacking)!-->
 <script src="./controler.js"></script>
 <script src="./shop.js"></script>
 <script src="./css-fail.js"></script>
+<script src="./particles.js"></script>
+<script src="./canvas-resize.js"></script>
+<script src="./tutorial.js"></script>
 </html>
