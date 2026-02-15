@@ -1,21 +1,28 @@
+body {
+    background-color: rgb(207, 255, 253);
+    color: rgb(0, 0, 0);
+    font-family: sans-serif;
+}
+
 #css-test-element {
     width: 10px;
 }
 
 #myButton {
-    border-radius: 0 !important;
-    margin-left: 100px;
-    width: auto !important;
+    user-select: none;
+    background-color: white;
+    border: 2px solid rgb(0, 0, 0) !important;
+    margin-left: 100px !important;
+    width: fit-content !important;
     height: auto !important;
     padding: 1px 10px !important;
     font-size: 14px !important;
     transition: 150ms !important;
-
 }
 
 #myButton:hover {
     border-radius: 0 !important;
-    width: auto !important;
+    width: fit-content !important;
     height: auto !important;
     padding: 5px 15px !important;
     font-size: 19px !important;
@@ -23,43 +30,12 @@
 }
 
 #myButton:active {
-    /* main code */
     border-radius: 0 !important;
-    width: auto !important;
+    width: fit-content !important;
     height: auto !important;
     padding: 3px 12px !important;
     font-size: 14px !important;
     transition: 150ms !important;
-}
-
-#particle-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.particle {
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 0 8px purple;
-    animation: floatUp 0.8s ease-out forwards;
-}
-
-@keyframes floatUp {
-    from {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-    to {
-        opacity: 0;
-        transform: translateY(-50px) scale(1.5);
-    }
 }
 
 #soundErrorPopup {
@@ -107,6 +83,7 @@
     cursor: pointer;
     transition: 180ms;
 }
+
 #settingsMenu {
     background: white;
     position: fixed;
@@ -122,31 +99,37 @@
     transition: 60ms;
     z-index: 1500;
 }
+
 #ok {
     margin-top: 10px;
     padding: auto;
     transition: 180ms;
 }
+
 #ok:hover {
     background-color: lightgray;
     padding: 10px 22px;
 }
+
 #ok:active {
     background-color: gray;
     padding: 5px 5px;
 }
+
 #prestigeBtn {
     margin-top: 10px;
     padding: auto;
     background-color: white;
     transition: 600ms;
 }
+
 #prestigeBtn:hover {
     margin-top: 10px;
     padding: auto;
     background-color: red;
     transition: 600ms;
 }
+
 #vers {
     position: fixed;
     top: 50px;
@@ -157,6 +140,7 @@
     cursor: pointer;
     transition: 180ms;
 }
+
 #versdiv {
     display: none;
     position: fixed;
@@ -172,6 +156,7 @@
     font-size: 14px;
     z-index: 1000;
 }
+
 #shopBtn {
     position: fixed;
     top: 80px;
@@ -182,13 +167,14 @@
     cursor: pointer;
     transition: 180ms;
 }
+
 #shop {
     display: none;
     position: fixed;
     top: 120px;
     right: 10px;
     width: 300px;
-    max-height: 400px;
+    max-height: 450px;
     overflow-y: auto;
     background: white;
     border: 2px solid black;
@@ -197,6 +183,7 @@
     font-size: 14px;
     z-index: 500;
 }
+
 #rec {
     position: fixed;
     bottom: 10px;
@@ -207,6 +194,7 @@
     cursor: default;
     color: gray;
 }
+
 #version {
     position: fixed;
     bottom: 20px;
@@ -217,6 +205,7 @@
     cursor: default;
     color: gray;
 }
+
 #tuto {
     position: fixed;
     top: 120px;
@@ -227,4 +216,90 @@
     cursor: pointer;
     transition: 180ms;
     box-shadow: 10 "green";
+}
+
+#grandma {
+    box-shadow: 0 0 12px 4px rgba(150, 80, 255, 0.4);
+    border: 1px solid rgb(180, 130, 255);
+    transition: 1s;
+}
+
+#grandma:hover {
+    box-shadow: 0 0 20px 6px rgba(180, 120, 255, 0.7);
+}
+
+#title {
+    margin-left: 40%;
+    box-shadow: 0 0 20px 6px rgb(250, 255, 0);
+    background-color: rgb(250, 255, 0);
+    width: fit-content;
+    height: auto;
+    transition: 260ms;
+}
+
+#title:hover {
+    margin-left: 35%;
+    border-radius: 0;
+    width: fit-content;
+    height: auto;
+    padding: 5px 15px;
+    font-size: 50px;
+}
+
+#title:active {
+    box-shadow: 0 0 12px 4px rgb(255, 0, 0);
+    background-color: rgb(255, 0, 0);
+}
+
+#buff {
+    position: fixed;
+    top: 150px;
+    right: 10px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: default;
+    color: rgb(0, 0, 0);
+}
+
+#buffDiv {
+    display: none;
+    position: fixed;
+    top: 190px;
+    right: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    z-index: 2000;
+}
+
+#showMenus {
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: default;
+    color: rgb(0, 0, 0);
+}
+
+#menus {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 150px;
+    height: 200px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 14px;
+    z-index: 2500;
 }

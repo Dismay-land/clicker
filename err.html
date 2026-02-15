@@ -20,19 +20,19 @@
     <button id="cnv">canvas failed</button>
     <p id="cnvtxt"></p>
     <script>
-        const scrpt = document.getElementById("scrpt")
-        const scrpttxt = document.getElementById("txt")
-        const cssbtn = document.getElementById("css")
-        const csstxt = document.getElementById("cssTxt")
-        const sndbtn = document.getElementById("snd")
-        const sndtxt = document.getElementById("sndTxt")
-        const cnvbtn = document.getElementById("cnv")
-        const cnvtxt = document.getElementById("cnvtxt")
-        let cnvshown = 0
+        const scrpt = document.getElementById("scrpt");
+        const scrpttxt = document.getElementById("txt");
+        const cssbtn = document.getElementById("css");
+        const csstxt = document.getElementById("cssTxt");
+        const sndbtn = document.getElementById("snd");
+        const sndtxt = document.getElementById("sndTxt");
+        const cnvbtn = document.getElementById("cnv");
+        const cnvtxt = document.getElementById("cnvtxt");
+        let cnvshown = 0;
 
-        let sndshown = 0
+        let sndshown = 0;
         let shown = 0
-        let cssshown = 0
+        let cssshown = 0;
         scrpt.onclick = function () {
             if (shown === 0){
                 shown = 1
@@ -41,9 +41,9 @@
             else{
                 shown = 0
                 scrpttxt.textContent = ""
-            }
+            };
 
-        }
+        };
         cssbtn.onclick = function () {
             if (cssshown === 0){
                 cssshown = 1
@@ -52,9 +52,9 @@
             else{
                 cssshown = 0
                 csstxt.textContent = ""
-            }
+            };
 
-        }
+        };
         sndbtn.onclick = function () {
             if (sndshown === 0){
                 sndshown = 1
@@ -63,9 +63,9 @@
             else{
                 sndshown = 0
                 sndtxt.textContent = ""
-            }
+            };
 
-        }
+        };
         cnvbtn.onclick = function () {
             if (cnvshown === 0){
                 cnvshown = 1
@@ -74,9 +74,9 @@
             else{
                 cnvshown = 0
                 cnvtxt.textContent = ""
-            }
+            };
 
-        }
+        };
     </script>
 </body>
 </html>
