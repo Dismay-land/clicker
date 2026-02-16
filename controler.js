@@ -180,6 +180,8 @@ prestigeBtn.onclick = function () {
         prestigelvl += 1;
         bonusfeat = 0;
         luckACH = 0;
+        Gpa = 0;
+        Gpacost = 1000000;
         button.textContent = score;
         display.textContent = "Level: " + level;
         prestigeInfo.textContent = "Prestige Multiplier: x" + prestigeMult;
@@ -206,6 +208,8 @@ prestigeBtn.onclick = function () {
         localStorage.setItem("reactorCost", reactorCost);
         localStorage.setItem("grandmaCost", grandmaCost);
         localStorage.setItem("alcamCost", alcamCost);
+        localStorage.setItem('gpa', Gpa)
+        localStorage.setItem('gpaCost', Gpacost)
         localStorage.setItem("luck", luckACH);
         localStorage.setItem("lastRewardDate", new Date().toDateString());
     }
@@ -338,6 +342,8 @@ resetBtn.onclick = function () {
     alcamCost = 100000;
     bonusfeat = 0;
     luckACH = 0;
+    Gpa = 0;
+    Gpacost = 1000000;
     button.textContent = score;
     display.textContent = "Level: " + level;
     prestigeInfo.textContent = "Prestige Multiplier: x" + prestigeMult;
@@ -365,6 +371,8 @@ resetBtn.onclick = function () {
     localStorage.setItem("grandmaCost", grandmaCost);
     localStorage.setItem("alcamCost", alcamCost);
     localStorage.setItem("luck", luckACH);
+    localStorage.setItem('gpa', Gpa)
+    localStorage.setItem('gpaCost', Gpacost)
     localStorage.setItem("lastRewardDate", new Date().toDateString());
     window.location.reload();
 };
@@ -470,6 +478,7 @@ reactBtn.onclick = function () {
         reactBtn.textContent = "Quantum Reactor (" + reactorCost + " points)";
         reactTxt.textContent = "You have " + reactors + " reactors";
         checkAchivements();
+        if (!autoActive) startAutoClicker();  // <-- now works
     }
 };
 
@@ -486,7 +495,7 @@ buyAuto.onclick = function () {
         button.textContent = score;
         buyAuto.textContent = "Auto-clicker (" + autoCost + " points)";
         autoInfo.textContent = "You have " + auto + " auto-clickers";
-
+        checkAchivements();
         if (!autoActive) startAutoClicker();  // <-- now works
     }
 
@@ -505,7 +514,7 @@ alcamBtn.onclick = function () {
         button.textContent = score;
         alcamBtn.textContent = "Alchemy Lab (" + alcamCost + " points)";
         alcamTxt.textContent = "You have " + alcam + " alchemy labs";
-
+        checkAchivements();
         if (!autoActive) startAutoClicker();  // <-- now works
     }
 }
@@ -521,9 +530,9 @@ GpaBtn.onclick = function () {
         localStorage.setItem("gpaCost", Gpacost);
 
         button.textContent = score;
-        GpaBtn.textContent = 'Grandpa (' + Gpacost + "points)"
+        GpaBtn.textContent = 'Grandpa ( ' + Gpacost + " points)"
         GpaTxt.textContent = 'You have ' + Gpa + ' Grandpa\'s'
-
+        checkAchivements();
         if (!autoActive) startAutoClicker();  // <-- now works        
     }
 }
@@ -571,14 +580,13 @@ twoFingers.onclick = function () {
 }
 
 // function callers
-if (auto > 0 || generators > 0 || factories > 0 || reactors > 0 || grandmas > 0) startAutoClicker();
+if (auto > 0 || generators > 0 || factories > 0 || reactors > 0 || grandmas > 0 || alcam > 0 || Gpa > 0) startAutoClicker();
 animateParticles();
 checkAchivements();
 giveDailyReward();
 checkOfflineEarnings();
 checkAchivements(); // Check achievements on load
 giveDailyReward(); // Give daily reward if applicable
-BonusButtonOverTime();
 spawnBonusButton();
 
 // unclassfied

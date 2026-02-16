@@ -298,12 +298,13 @@ export function startAutoClicker() {
     setInterval(() => {
         let totalGain = 0;
 
-        totalGain += (auto + autoBoost) * 1;
+        totalGain += auto * 1;
         totalGain += generators * 5;
         totalGain += factories * 25;
         totalGain += reactors * 100;
         totalGain += alcam * 10000;
         totalGain += grandmas * 1000000;
+        totalGain += Gpa * 500000;
 
         if (totalGain > 0) {
             score += totalGain;

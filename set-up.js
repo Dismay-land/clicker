@@ -74,8 +74,8 @@ let grandmas = Number(localStorage.getItem("grandmas")) || 0;
 let grandmaCost = Number(localStorage.getItem("grandmaCost")) || 10000000;
 let alcam = Number(localStorage.getItem("alcam")) || 0;
 let alcamCost = Number(localStorage.getItem("alcamCost")) || 100000;
-let Gpa = Number(localStorage.getItem('gpa')) || 500000;
-let Gpacost = Number(localStorage.getItem('gpaCost')) || 1000000;
+let Gpa = Number(localStorage.getItem('gpa')) || 0;
+let Gpacost = Number(localStorage.getItem('gpaCost')) || 5000000;
 
 // prestige variables
 let prestigelvl = Number(localStorage.getItem("prestigeBtn")) || 0;
@@ -95,7 +95,6 @@ let twofingOwn = Number(localStorage.getItem("2finger")) || 0; // 0 = not owned
 let luckACH = Number(localStorage.getItem("luck")) || 0; // 0 = not owned
 let prestigePermit = 0;
 let upgrades = (auto * 1) + (generators * 5) + (factories * 25) + (reactors * 100) + (alcam * 10000) + (grandmas * 1000000);
-let autoBoost = 0;
 let particles = [];
 let amount = parseInt(input.value, 10) || 1;
 let plus = "";
@@ -131,7 +130,7 @@ grandmaBtn.textContent = "RIP Grandma... (" + grandmaCost + " points)";
 grandmaTxt.textContent = "You have " + grandmas + " Grandmas";
 alcamBtn.textContent = "Alchemy Lab (" + alcamCost + " points)";
 alcamTxt.textContent = "You have " + alcam + " alchey labs";
-GpaBtn. textContent = 'Grandpa (' + Gpacost + ' points';
+GpaBtn. textContent = 'Grandpa ( ' + Gpacost + '  points)';
 GpaTxt.textContent = 'you have ' + Gpa + ' Grandpa\'s'
 
 // unclassified
