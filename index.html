@@ -18,7 +18,7 @@ thank you for reading this comment, happy viewing (or hacking)!-->
     <link id="mainCSS" rel="stylesheet" href="./btnclk.css">
     <link rel="icon" href="./gameLG.png">
     <meta name="font-family" content="sans-serif">
-    <script type="module" src="./functions.js"></script>
+    <script type="module" src="./js/functions.js"></script>
 </head>
 
 <body style="background-color: rgb(207, 255, 253); color: rgb(0, 0, 0);">
@@ -465,6 +465,14 @@ body {
     </script>
     <!-- main setup -->
     <h1 id="title" style="user-select: none;">Button Clicker</h1>
+    <div class="petShape">
+        <p id="petName"></p>
+        <div id="head"></div>
+        <div id="body"></div>
+        <div id="leg1"></div>
+        <div id="leg2"></div>
+        <div id="tail"></div>
+    </div>
     <div id="version">V2.3</div>
     <div id="rec">
         recomended project: <b>https://storafy.vercel.app</b>
@@ -476,6 +484,7 @@ body {
         <button id="tuto">❓tutorial❓</button>
         <button id="vers">Version log</button>
         <button id="buff">💪buffs</button>
+        <button disabled id="petMenu">🛠️Work in Progress🛠️</button>
         <div id="buffDiv" style="display:none;">
             <button id="2fing">2
                 fingers (cost: 100000 points)</button>
@@ -585,6 +594,10 @@ body {
                 (10 million points)</button>
             <p id="grandmatxt">You have 0 Grandmas</p>
         </div>
+        <div id="petDiv">
+            <button id="cat">Buy cat (100000000 points)</button>
+            <button id="dog">Buy dog (100000000 points)</button>
+        </div>
     </div>
     <div style="margin-bottom: 20px">
         <canvas id="particleCanvas"></canvas>
@@ -618,11 +631,20 @@ body {
         </div>
     </noscript>
     <!--end of source-->
+
+    <!-- message -->
+     <div id="messageDivShade">
+        <div id="messageDiv">
+            <h2>Message from the developer</h2>
+            <p id="message">Button Clicker is slowly fading, and i really hope you are reading this. Button Clicker is dying, so i will release one final update to change that. you are the change that can keep this game from no longer reciving updates. as if for now, have fun and enjoy old Button Clicker.</p>
+            <button onclick="document.getElementById('messageDivShade').style.display = 'none';" style="margin-left: 40%; padding: 10px 20px;">Understood!</button>
+        </div>
+     </div>
+
     <p id="totclk">total clicks: 0</p>
     <button id="prestigeBtn" onclick="prestige()">Prestige
         (Requires 10,000,000,000 (10 billion) points)</button>
     <div id="prestigeInfo">Prestige Multiplier: x1</div>
-    <!-- upgrades -->
     <!-- achievements -->
     <h2>achievements (scroll down)</h2>
     <p id="click">???</p>
@@ -642,7 +664,7 @@ body {
     <p id="1gen">???</p>
     <p id="10gen">???</p>
     <p id="50gen">???</p>
-    <p id="100gen"></p>
+    <p id="100gen">???</p>
     <p id="1fac">???</p>
     <p id="10fac">???</p>
     <p id="50fac">???</p>
@@ -664,14 +686,14 @@ body {
     <p id="50grandma">???</p>
     <p id="100grandma">???</p>
 </body>
-<script src="./set-up.js"></script>
-<script type="module" src="./controler.js"></script>
-<script src="./animat-for-tit.js"></script>
-<script type="module" src="./sound.js"></script>
-<script type="module" src="./shop.js"></script>
-<script type="module" src="./particles.js"></script>
-<script type="module" src="./canvas-resize.js"></script>
-<script type="module" src="./tutorial.js"></script>
-<script src="./mobile-menu.js"></script>
-
+<script src="./js/set-up.js"></script>
+<script type="module" src="./js/controler.js"></script>
+<script src="./js/animat-for-tit.js"></script>
+<script type="module" src="./js/sound.js"></script>
+<script type="module" src="./js/shop.js"></script>
+<script type="module" src="./js/particles.js"></script>
+<script type="module" src="./js/canvas-resize.js"></script>
+<script type="module" src="./js/tutorial.js"></script>
+<script src="./js/mobile-menu.js"></script>
+<script src="./js/pet-AI.js"></script>
 </html>

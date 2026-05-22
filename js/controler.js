@@ -182,6 +182,7 @@ prestigeBtn.onclick = function () {
         luckACH = 0;
         Gpa = 0;
         Gpacost = 1000000;
+        petowned = 0;
         button.textContent = score;
         display.textContent = "Level: " + level;
         prestigeInfo.textContent = "Prestige Multiplier: x" + prestigeMult;
@@ -212,6 +213,7 @@ prestigeBtn.onclick = function () {
         localStorage.setItem('gpaCost', Gpacost)
         localStorage.setItem("luck", luckACH);
         localStorage.setItem("lastRewardDate", new Date().toDateString());
+        window.location.reload();
     }
     else if (score <= 10000000000) {
         alert("you don't have enought clicks, go mash that button!")
@@ -344,6 +346,7 @@ resetBtn.onclick = function () {
     luckACH = 0;
     Gpa = 0;
     Gpacost = 1000000;
+    petowned = 0;
     button.textContent = score;
     display.textContent = "Level: " + level;
     prestigeInfo.textContent = "Prestige Multiplier: x" + prestigeMult;
@@ -605,4 +608,40 @@ darkModeBtn.onclick = function () {
 rec.onclick = function () {
     if (!confirm('ready to switch?')) return;
     window.location.href = "https://storafy.vercel.app/"
+}
+
+petMenu.onclick = function () {
+    if (petowned == 1) {
+        dogBtn.disabled = true;
+        catBtn.disabled = true;
+    } else {
+        dogBtn.disabled = false;
+        catBtn.disabled = false;
+    }
+    if (petDiv.style.display === "none" || petDiv.style.display === "") {
+        petDiv.style.display = "block";
+        if (dark == 1) petDiv.style.backgroundColor = "rgb(0, 0, 0)";
+        else petDiv.style.backgroundColor = "rgb(255, 255, 255)";
+    } else petDiv.style.display = "none";
+}
+
+dogBtn.onclick = function () {
+    if (!petowned) {
+        if (score >= 100000000) {
+            score -= 100000000;
+            petowned = 1;
+            localStorage.setItem("petOwned", petowned);
+            button.textContent = score;
+        }
+    }
+}
+catBtn.onclick = function () {
+    if (!petowned) {
+        if (score >= 100000000) {
+            score -= 100000000;
+            petowned = 1;
+            localStorage.setItem("petOwned", petowned);
+            button.textContent = score;
+        }
+    }
 }

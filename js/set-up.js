@@ -49,6 +49,19 @@ const buffBtn = document.getElementById("buff");
 const menuDiv = document.getElementById("menus");
 const menuBtn = document.getElementById("showMenus");
 const rec = document.getElementById('rec');
+const petMenu = document.getElementById('petMenu');
+const petDiv = document.getElementById('petDiv');
+const catBtn = document.getElementById('cat');
+const dogBtn = document.getElementById('dog');
+
+// pet elelements
+const pet = document.querySelector(".petShape");
+const head = document.getElementById("head");
+const body = document.getElementById("body");
+const leg1 = document.getElementById("leg1");
+const leg2 = document.getElementById("leg2");
+const tail = document.getElementById("tail");
+const petName = document.getElementById("petName");
 
 // preapare canvas
 const canvas = document.getElementById("particleCanvas");
@@ -91,6 +104,13 @@ let bonusfeat = Number(localStorage.getItem("bonusBtn")) || 0; // 0 = not owned
 let lvlfeat = Number(localStorage.getItem("autoLvl")) || 0; // 0 = not owned
 let twofingOwn = Number(localStorage.getItem("2finger")) || 0; // 0 = not owned
 
+// pet variavbles (disabled)
+let petNames = ["Fluffy", "Sparky", "Buddy", "Mittens", "Shadow", "Charlie", "Luna", "Max", "Simba", "Oliver", "Cloudia", "Klava", "Paws", "Whiskers", "Gizmo", "Pumpkin", "Smokey", "Toby", "Coco", "Milo", "Nala", "Rocky", "Ziggy", "Peanut", "Sassy", "Boots", "Felix", "Missy", "Tiger", "Oreo", "Socks", "Ginger", "Midnight", "Cleo", "Rusty", "Misty", "Tigger", "Sophie", "Simone", "Buster", "Lily", "Zoe", "Roxy", "Salem", "Maggie", "Shadowfax", "Pippin", "Gandalf"];
+let chosenPetName = localStorage.getItem("petName") || petNames[Math.floor(Math.random() * petNames.length)];
+localStorage.setItem("petName", chosenPetName);
+petName.textContent = chosenPetName;
+let petowned = Number(localStorage.getItem("petOwned")) || 0; // 0 = not owned
+
 // unclassified (yet)
 let luckACH = Number(localStorage.getItem("luck")) || 0; // 0 = not owned
 let prestigePermit = 0;
@@ -130,7 +150,7 @@ grandmaBtn.textContent = "RIP Grandma... (" + grandmaCost + " points)";
 grandmaTxt.textContent = "You have " + grandmas + " Grandmas";
 alcamBtn.textContent = "Alchemy Lab (" + alcamCost + " points)";
 alcamTxt.textContent = "You have " + alcam + " alchey labs";
-GpaBtn. textContent = 'Grandpa ( ' + Gpacost + '  points)';
+GpaBtn.textContent = 'Grandpa ( ' + Gpacost + '  points)';
 GpaTxt.textContent = 'you have ' + Gpa + ' Grandpa\'s'
 
 // unclassified
@@ -184,7 +204,7 @@ if (twofingOwn === 1) {
 // check if all achivements unlocked
 const allAchievementsUnlocked =
     clicks >= 25000 && auto >= 100 && generators >= 100 &&
-    factories >= 100 && reactors >= 100 && alcam >= 100 && grandmas >= 100;
+    factories >= 100 && reactors >= 100 && alcam >= 100 && grandmas >= 100 && Gpa >= 100;
 if (allAchievementsUnlocked) {
     prestigePermit = 1;
 };

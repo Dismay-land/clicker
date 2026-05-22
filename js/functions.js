@@ -216,6 +216,17 @@ export function checkOfflineEarnings() {
     let earned = secondsAway * offlineRate;
     score += earned;
 
+    // calculate how much points you gained and lost by the pet, and if lower than a sertian point, alert the player that their pet died
+    // for every minute, add 10000000 points, and for every 10 minutes, subtract 30000000 points. if the score goes lower than 1000000, the pet dies
+    let petEffect = Math.floor(secondsAway / 60) * 10000000 - Math.floor(secondsAway / 600) * 30000000;
+    score += petEffect;
+    if (score < 1000000) {
+        alert("Your pet has died due to neglect while you were away. Don't just leave it alone for so long! Please take better care of it next time.");
+        localStorage.removeItem("petName");
+    }
+
+    localStorage.setItem("score", score);
+
     alert("You were away for " + secondsAway +
         "s and earned " + earned + " points!");
     let mybtn = document.getElementById("myButton")
